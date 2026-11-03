@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow — Sign in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            deep: '#0B132B',
+            navy: '#1C2541',
+            slateN: '#3A506B',
+            teal: '#5BC0BE',
+            gold: '#D4AF37',
+          },
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <!-- Hero with team collaboration visual -->
+    <aside class="auth-visual">
+      <img
+        class="auth-visual-img"
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
+        alt="Team collaborating around a workspace table"
+        width="1600"
+        height="1067"
+      />
+      <div class="auth-visual-overlay"></div>
+      <div class="auth-visual-content">
+        <p class="text-sm font-semibold tracking-widest uppercase mb-3" style="color:#5BC0BE;">TaskFlow</p>
+        <h1 class="font-display text-4xl md:text-5xl font-bold leading-tight text-white mb-4">
+          Project work,<br />aligned for teams.
+        </h1>
+        <p class="text-lg leading-relaxed" style="color:#c8d0e0;">
+          Plan projects, move work across a Kanban board, and keep delivery visible — one focused workspace for every role.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Auth forms (light panel) -->
+    <section class="auth-form-panel">
+      <div class="auth-card">
+        <div class="mb-8">
+          <div class="brand font-display text-3xl font-bold mb-1">TaskFlow</div>
+          <p class="text-muted">Sign in to your team workspace</p>
+        </div>
+
+        <div class="tab-bar mb-6 w-full">
+          <button type="button" class="tab-btn active flex-1" id="tab-login">Sign in</button>
+          <button type="button" class="tab-btn flex-1" id="tab-register">Register</button>
+        </div>
+
+        <div id="auth-error" class="hidden mb-4 p-3 rounded-lg text-sm" style="background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;"></div>
+
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label class="text-sm text-muted block mb-1" for="login-identifier">Username or Email</label>
+            <input class="input-field" id="login-identifier" autocomplete="username" placeholder="Enter username or email" required />
+          </div>
+          <div>
+            <label class="text-sm text-muted block mb-1" for="login-password">Password</label>
+            <input class="input-field" id="login-password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Sign in</button>
+        </form>
+
+        <form id="register-form" class="space-y-4 hidden">
+          <div>
+            <label class="text-sm text-muted block mb-1" for="reg-name">Full name</label>
+            <input class="input-field" id="reg-name" required />
+          </div>
+          <div>
+            <label class="text-sm text-muted block mb-1" for="reg-username">Username</label>
+            <input class="input-field" id="reg-username" required />
+          </div>
+          <div>
+            <label class="text-sm text-muted block mb-1" for="reg-email">Email</label>
+            <input class="input-field" id="reg-email" type="email" required />
+          </div>
+          <div>
+            <label class="text-sm text-muted block mb-1" for="reg-password">Password</label>
+            <input class="input-field" id="reg-password" type="password" minlength="6" required />
+          </div>
+          <button type="submit" class="btn btn-gold w-full">Create account</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/demo-store.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth-page.js"></script>
+
+  <script type="module">
+  import { supabase } from './js/supabase.js';
+
+  async function testConnection() {
+    const { data, error } = await supabase.from('tasks').select('*');
+    if (error) {
+      console.error('Cillad ayaa jirta:', error.message);
+    } else {
+      console.log('Xogta si guul leh ayay uga timid Supabase:', data);
+    }
+  }
+
+  testConnection();
+</script>
+</body>
+</html>
