@@ -55,7 +55,12 @@ TaskFlow implements a structured Role-Based Access Control (RBAC) system to ensu
 - **Deployment:** Vercel
 
 ---
+## 👨‍💻 Developer Information
 
+- **Developed By:** Eng Miski
+- **Role:** Full Stack / Front-End Developer
+- **Live Demo:** [TaskFlow App Live Link](https://task-management-git-main-miski-projects.vercel.app/app.html)
+  -----
 ## 🌐 Live Demo
 
 Explore the live application on Vercel:
